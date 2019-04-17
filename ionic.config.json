@@ -1,0 +1,7 @@
+{
+  "name": "diplodoc",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}
