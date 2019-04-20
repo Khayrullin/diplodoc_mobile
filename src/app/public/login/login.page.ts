@@ -17,7 +17,6 @@ export class LoginPage implements OnInit {
   }
 
   login(email, password) {
-    console.log(email);
     this.authService.login(email, password);
   }
 
