@@ -28,7 +28,7 @@ export class AuthenticationService {
     });
   }
 
-  login() {
+  login(email, password) {
     return this.storage.set(TOKEN_KEY, 'Bearer 1234567').then(() => {
       this.authenticationState.next(true);
     });

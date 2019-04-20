@@ -1,9 +1,23 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
+    <ion-toolbar >
+        <ion-title >Вход</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
-  <ion-button (click)="login()" expand="block">Login</ion-button>
+    <ion-item-group >
+        <ion-item>
+            <ion-label mode="ios" position="floating" color="primary" >E-mail</ion-label>
+            <ion-input type="text" required="true" inputmode="email" id="email" [(ngModel)]="email"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label mode="ios" position="floating" color="primary" >Пароль</ion-label>
+            <ion-input type="password" required="true" mode="ios" inputmode="password" id="password"
+                       [(ngModel)]="password"></ion-input>
+        </ion-item>
+
+            <ion-button (click)="login(email,password)" expand="block">
+                <ion-ripple-effect></ion-ripple-effect>
+                Войти</ion-button>
+    </ion-item-group>
 </ion-content>

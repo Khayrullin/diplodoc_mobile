@@ -6,14 +6,19 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
+    email = '';
+    password = '';
+  constructor(private authService: AuthenticationService) {
 
-  constructor(private authService: AuthenticationService) { }
+
+  }
 
   ngOnInit() {
   }
 
-  login() {
-    this.authService.login();
+  login(email, password) {
+    console.log(email);
+    this.authService.login(email, password);
   }
 
 }
