@@ -11,13 +11,28 @@
         <ion-item>
             <ion-label mode="ios" position="floating" color="primary">E-mail</ion-label>
             <ion-input type="text" required="true" inputmode="email" id="email" formControlName="email"></ion-input>
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.email">
+                    <div class="error-message" *ngIf="loginForm.get('email').hasError(validation.type) && (loginForm.get('email').dirty ||loginForm.get('email').touched)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
             <ion-label mode="ios" position="floating" color="primary">Пароль</ion-label>
             <ion-input type="password" required="true" mode="ios" inputmode="password" id="password"
                        formControlName="password"></ion-input>
+
+            <div class="validation-errors">
+                <ng-container *ngFor="let validation of validation_messages.password">
+                    <div class="error-message" *ngIf="loginForm.get('password').hasError(validation.type) && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                        {{ validation.message }}
+                    </div>
+                </ng-container>
+            </div>
         </ion-item>
 
         <ion-col>
-            <ion-button type="submit" expand="block">
+            <ion-button type="submit" [disabled]="loginForm.invalid" expand="block">
                 <ion-ripple-effect></ion-ripple-effect>
                 Войти
             </ion-button>
