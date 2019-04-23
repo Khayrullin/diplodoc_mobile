@@ -2,7 +2,7 @@ import {Platform} from '@ionic/angular';
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {BehaviorSubject} from 'rxjs';
-import {HttpClient} from '@angular/common/http';
+import {HttpClient, HttpErrorResponse} from '@angular/common/http';
 
 const TOKEN_KEY = 'auth-token';
 
@@ -29,15 +29,33 @@ export class AuthenticationService {
         });
     }
 
-    login(email, password) {
-        this.http.post('http://diplodoc.ru/api/login', {
-            login: email,
-            password: password
-        }).subscribe((response) => {
-            return this.storage.set(TOKEN_KEY, response['result']['token']).then(() => {
-                this.authenticationState.next(true);
-            });
-        });
+    login(value) {
+        try {
+            this.http.post('http://diplodoc.ru/api/login', {
+                login: value.email,
+                password: value.password
+            }).subscribe(
+                (response) => {
+                    if (response == null) {
+                        throw new Error('Empty response');
+                    } else {
+                        return this.storage.set(TOKEN_KEY, response['result']['token']).then(() => {
+                            this.authenticationState.next(true);
+                        });
+                    }
+                },
+                (error: HttpErrorResponse) => {
+                    if (error['status'] === 401) {
+                        console.log(error);
+
+                    }
+                }
+            );
+        } catch (e) {
+            console.log(e);
+
+        }
+
     }
 
     logout() {

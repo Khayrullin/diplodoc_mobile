@@ -1,23 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { AuthenticationService } from '../../services/authentication.service';
+import {Component, OnInit} from '@angular/core';
+import {AuthenticationService} from '../../services/authentication.service';
+import { Validators, FormBuilder, FormGroup, FormControl } from '@angular/forms';
+
+
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.page.html',
-  styleUrls: ['./login.page.scss'],
+    selector: 'app-login',
+    templateUrl: './login.page.html',
+    styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
     email = '';
     password = '';
-  constructor(private authService: AuthenticationService) {
+    loginForm: FormGroup;
 
+    constructor(private authService: AuthenticationService) {
+        this.loginForm = new FormGroup({
+            email: new FormControl('', [Validators.required, Validators.email, Validators.minLength(4)]),
+            password: new FormControl('', [Validators.required]),
+        });
 
-  }
+    }
 
-  ngOnInit() {
-  }
+    ngOnInit() {
+    }
 
-  login(email, password) {
-    this.authService.login(email, password);
-  }
+    login() {
+        this.authService.login(this.loginForm.value);
+    }
 
 }

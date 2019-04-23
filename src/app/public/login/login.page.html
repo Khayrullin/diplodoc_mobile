@@ -1,23 +1,26 @@
 <ion-header>
-    <ion-toolbar >
-        <ion-title >Вход</ion-title>
+    <ion-toolbar>
+        <ion-title>Вход</ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
-    <ion-item-group >
+
+
+    <form [formGroup]="loginForm" novalidate (ngSubmit)="login()">
         <ion-item>
-            <ion-label mode="ios" position="floating" color="primary" >E-mail</ion-label>
-            <ion-input type="text" required="true" inputmode="email" id="email" [(ngModel)]="email"></ion-input>
-        </ion-item>
-        <ion-item>
-            <ion-label mode="ios" position="floating" color="primary" >Пароль</ion-label>
+            <ion-label mode="ios" position="floating" color="primary">E-mail</ion-label>
+            <ion-input type="text" required="true" inputmode="email" id="email" formControlName="email"></ion-input>
+            <ion-label mode="ios" position="floating" color="primary">Пароль</ion-label>
             <ion-input type="password" required="true" mode="ios" inputmode="password" id="password"
-                       [(ngModel)]="password"></ion-input>
+                       formControlName="password"></ion-input>
         </ion-item>
 
-            <ion-button (click)="login(email,password)" expand="block">
+        <ion-col>
+            <ion-button type="submit" expand="block">
                 <ion-ripple-effect></ion-ripple-effect>
-                Войти</ion-button>
-    </ion-item-group>
+                Войти
+            </ion-button>
+        </ion-col>
+    </form>
 </ion-content>
