@@ -1,5 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {AuthenticationService} from './../../services/authentication.service';
+import {AuthenticationService} from '../../services/authentication.service';
+import {Storage} from '@ionic/storage';
+import {UpdaterService} from '../../services/updater.service';
 
 @Component({
     selector: 'app-dashboard',
@@ -8,7 +10,7 @@ import {AuthenticationService} from './../../services/authentication.service';
 })
 export class DashboardPage implements OnInit {
 
-    constructor(private authService: AuthenticationService) {
+    constructor(private authService: AuthenticationService, private storage: Storage, private updService: UpdaterService) {
     }
 
     ngOnInit() {
@@ -18,4 +20,7 @@ export class DashboardPage implements OnInit {
         this.authService.logout();
     }
 
+    sendPostRequest() {
+        this.updService.update();
+    }
 }
