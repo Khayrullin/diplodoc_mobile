@@ -33,7 +33,7 @@ export class UpdaterService {
                                 throw new Error('Empty response');
                             } else {
                                 console.log(response);
-                                return this.storage.set('tasks', response['result']);
+                                return this.storage.set('data', response['result']);
                             }
                         },
                         (error: HttpErrorResponse) => {
@@ -43,7 +43,7 @@ export class UpdaterService {
                             }
                         }
                     );
-                }, 10);
+                }, 1000);
                 this.storage.get('auth-token').then((val) => {
                     this.token = val;
                 });

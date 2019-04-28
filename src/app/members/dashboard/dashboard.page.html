@@ -1,18 +1,22 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-button (click)="logout()">
-        <ion-icon slot="icon-only" name="log-out"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-title>Задачи</ion-title>
-  </ion-toolbar>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button (click)="logout()">
+                <ion-icon slot="icon-only" name="log-out"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title>Задачи</ion-title>
+    </ion-toolbar>
 </ion-header>
 
 <ion-content>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Задачи</ion-label>
+        </ion-list-header>
+        <ion-item-group *ngFor="let item of items">
+            <ion-item button (click)="upd()" > {{ item.name }}</ion-item>
+        </ion-item-group>
 
-    <p>
-        Запрос на задачи
-    </p>
-    <ion-button  expand="block" (click)="sendPostRequest()">Запрос</ion-button>
+    </ion-list>
 </ion-content>
