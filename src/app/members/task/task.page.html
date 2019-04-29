@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="Назад"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Задача</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list>
+        <ion-list-header>
+            <ion-label>Детали задачи</ion-label>
+        </ion-list-header>
+
+        <ion-label><p>Название</p></ion-label>
+        <ion-item> {{ items.name }}</ion-item>
+
+        <ion-label><p>Описание</p></ion-label>
+        <ion-item> {{ items.description }}</ion-item>
+
+        <ion-label><p>Дедлайн</p></ion-label>
+        <ion-item> {{ items.deadline }}</ion-item>
+
+        <ion-label><p>Статус</p></ion-label>
+        <ion-item>{{ items.status_id }} </ion-item>
+
+        <ion-label><p>Объем работ</p></ion-label>
+        <ion-item>{{ items.quantity }} {{ items.unit }}</ion-item>
+
+        <ion-label><p>Выполнено</p></ion-label>
+        <ion-item> {{ items.quantity_done }} {{ items.unit }}</ion-item>
+
+        <ion-label><p>Осталось выполнить</p></ion-label>
+        <ion-item> {{ items.quantity_left }} {{ items.unit }}</ion-item>
+
+        <ion-label><p>Материалы</p></ion-label>
+
+
+        <ion-grid>
+
+            <ion-item-group *ngFor="let item of  items.materials ">
+                <div class="block">
+                    {{item.name}}
+                    <ion-row>
+                        <ion-col size="5">
+                            <ion-label><p>Количество</p></ion-label>
+                            {{item.quantity}}
+                        </ion-col>
+                        <ion-col size="4">
+                            <ion-label><p>Остаток</p></ion-label>
+                            {{item.quantity_left}}
+                        </ion-col>
+                        <ion-col size="3">
+                            <ion-label><p>Ед. изм</p></ion-label>
+                            {{item.unit}}
+                        </ion-col>
+                    </ion-row>
+                </div>
+            </ion-item-group>
+        </ion-grid>
+
+
+        <ion-item button (click)="logout()"> Отчеты</ion-item>
+
+    </ion-list>
+</ion-content>

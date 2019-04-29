@@ -2,6 +2,7 @@ import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Storage} from '@ionic/storage';
 import {UpdaterService} from '../../services/updater.service';
+import {NavigationExtras, Router} from '@angular/router';
 
 
 @Component({
@@ -11,8 +12,12 @@ import {UpdaterService} from '../../services/updater.service';
 })
 export class DashboardPage implements OnInit {
     items: any;
+    data: any;
 
-    constructor(private authService: AuthenticationService, private storage: Storage, private updService: UpdaterService) {
+
+
+    constructor(private authService: AuthenticationService, private router: Router, private storage: Storage,
+                private updService: UpdaterService) {
     }
 
     ngOnInit() {
@@ -30,8 +35,20 @@ export class DashboardPage implements OnInit {
     logout() {
         this.authService.logout();
     }
-    upd() {
-        console.log('ffff');
+
+    openDetailsWithState(id) {
+        for (const it in this.items) {
+            if (this.items[it].id === id) {
+                this.data = this.items[it];
+            }
+        }
+        console.log(this.data);
+        const navigationExtras: NavigationExtras = {
+            state: {
+                task: this.data
+            }
+        };
+        return this.router.navigate(['members', 'task'], navigationExtras);
     }
 
     update() {
