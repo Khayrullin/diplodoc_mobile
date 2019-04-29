@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
+import {UpdaterService} from '../../services/updater.service';
 
 @Component({
     selector: 'app-reports',

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Storage} from '@ionic/storage';
 import {ActivatedRoute, Router} from '@angular/router';
+import {UpdaterService} from '../../services/updater.service';
 
 @Component({
     selector: 'app-report',
@@ -22,5 +23,6 @@ export class ReportPage implements OnInit {
 
     ngOnInit() {
     }
-
 }
+
+

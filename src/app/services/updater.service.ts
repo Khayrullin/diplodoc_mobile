@@ -33,6 +33,7 @@ export class UpdaterService {
                                 throw new Error('Empty response');
                             } else {
                                 console.log(response);
+                                this.storage.set('upd_at', Date.now());
                                 return this.storage.set('data', response['result']);
                             }
                         },
@@ -50,7 +51,6 @@ export class UpdaterService {
             });
         } catch (e) {
             console.log(e);
-
         }
 
     }

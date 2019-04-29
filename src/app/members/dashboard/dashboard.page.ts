@@ -13,22 +13,27 @@ import {NavigationExtras, Router} from '@angular/router';
 export class DashboardPage implements OnInit {
     items: any;
     data: any;
-
+    upd_at: any;
+    ok = true;
+    loading = 0;
 
 
     constructor(private authService: AuthenticationService, private router: Router, private storage: Storage,
                 private updService: UpdaterService) {
+        this.loadItems();
+        this.doRefresh();
     }
 
     ngOnInit() {
-        this.update();
-        this.loadItems();
     }
 
     // READ
     loadItems() {
         this.storage.get('data').then(items => {
             this.items = items;
+        });
+        this.storage.get('upd_at').then(data => {
+            this.upd_at = data;
         });
     }
 
@@ -52,6 +57,20 @@ export class DashboardPage implements OnInit {
     }
 
     update() {
-        this.updService.update();
+        return this.updService.update();
+    }
+
+     doRefresh() {
+        this.loading = 0;
+        const progressBar = setInterval(() => {
+            this.loading += .25;
+            if (this.loading === 1) {
+                clearInterval(progressBar);
+            }
+        }, 500);
+        setTimeout(() => {
+            this.loadItems();
+        }, 2000);
+        return this.update();
     }
 }

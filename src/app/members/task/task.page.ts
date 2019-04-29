@@ -3,6 +3,7 @@ import {Storage} from '@ionic/storage';
 import {AuthenticationService} from '../../services/authentication.service';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 import {HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {UpdaterService} from '../../services/updater.service';
 
 @Component({
     selector: 'app-task',
