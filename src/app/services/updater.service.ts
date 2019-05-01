@@ -66,10 +66,12 @@ export class UpdaterService {
                 type_of_work: value.type_of_work,
                 amount: value.amount,
                 work_hours: value.work_hours,
+                task_id: task_id,
                 workman_id: value.workman,
-                materials: value.materials,
+
+                // TODO
+                materials: value.material,
                 documents: value.documents,
-                task_id: task_id
             }, httpOptions).subscribe(
                 (response) => {
                     if (response == null) {

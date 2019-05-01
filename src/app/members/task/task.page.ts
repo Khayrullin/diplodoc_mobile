@@ -32,7 +32,8 @@ export class TaskPage implements OnInit {
         console.log(this.data);
         const navigationExtras: NavigationExtras = {
             state: {
-                task: this.data
+                task: this.data,
+                materials: this.items['materials']
             }
         };
         return this.router.navigate(['members', 'reports'], navigationExtras);

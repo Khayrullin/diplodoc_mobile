@@ -3,6 +3,7 @@ import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/form
 import {AuthenticationService} from '../../services/authentication.service';
 import {UpdaterService} from '../../services/updater.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {Storage} from '@ionic/storage';
 
 @Component({
   selector: 'app-new-report',
@@ -14,15 +15,26 @@ export class NewReportPage implements OnInit {
   amount = AbstractControl;
   workman = AbstractControl;
   work_hours = AbstractControl;
-  materials = AbstractControl;
   documents = AbstractControl;
+  // TODO
+  material: AbstractControl;
   reportForm: FormGroup;
   task_id: any;
+  workers: any;
+  materials: any;
 
-  constructor(private updService: UpdaterService, private route: ActivatedRoute, private router: Router) {
+  constructor(private updService: UpdaterService, private route: ActivatedRoute,
+              private router: Router, private storage: Storage) {
     this.route.queryParams.subscribe(params => {
       if (this.router.getCurrentNavigation().extras.state) {
         this.task_id = this.router.getCurrentNavigation().extras.state.task_id;
+        this.materials = this.router.getCurrentNavigation().extras.state.materials;
+        setTimeout(() => {
+          console.log(this.workers);
+        }, 500);
+        this.storage.get('data').then(items => {
+          this.workers = items[0]['all_workers'];
+        });
       }
     });
     this.reportForm = new FormGroup({
@@ -30,7 +42,8 @@ export class NewReportPage implements OnInit {
       amount: new FormControl('', [Validators.required]),
       workman: new FormControl(''),
       work_hours: new FormControl('', [Validators.required]),
-      materials: new FormControl(''),
+      // TODO
+      material: new FormControl(''),
       documents: new FormControl('')
     });
   }
