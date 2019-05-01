@@ -40,4 +40,7 @@ export class ReportsPage implements OnInit {
         return this.router.navigate(['members', 'report'], navigationExtras);
     }
 
+    createReport() {
+        return this.router.navigate(['members', 'new-report']);
+    }
 }

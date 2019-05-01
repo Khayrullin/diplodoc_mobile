@@ -10,20 +10,22 @@
 </ion-header>
 
 <ion-content>
+    <ion-progress-bar [value]="loading"></ion-progress-bar>
+    <div class="error" *ngIf="!ok">
+        Нет соединения с сервером
+    </div>
+
+    <ion-button color="primary" expand="block" (click)="doRefresh()">
+        Обновить
+    </ion-button>
+    <ion-label><p>Обновлено {{upd_at  | date:'medium'}}</p></ion-label>
+
     <ion-list>
         <ion-item-group *ngFor="let item of items">
             <ion-item button (click)="openDetailsWithState(item.id)"> {{ item.name }}</ion-item>
         </ion-item-group>
 
     </ion-list>
-    <ion-label><p>Обновлено {{upd_at  | date:'medium'}}</p></ion-label>
-    <ion-button color="secondary" expand="block" (click)="doRefresh()">
-        Синхронизировать
-    </ion-button>
 
-    <ion-progress-bar [value]="loading"></ion-progress-bar>
-    <div class="error" *ngIf="!ok">
-        Нет соединения с сервером
-    </div>
 
 </ion-content>

@@ -27,7 +27,7 @@ export class UpdaterService {
                             'authorization': this.token
                         })
                     };
-                    this.http.get('http://diplodoc.ru/api/view', httpOptions).subscribe(
+                    this.http.get('http://diplodoc.ru/api/get', httpOptions).subscribe(
                         (response) => {
                             if (response == null) {
                                 throw new Error('Empty response');
@@ -55,4 +55,40 @@ export class UpdaterService {
 
     }
 
+    saveReport(value, task_id) {
+        try {
+            const httpOptions = {
+                headers: new HttpHeaders({
+                    'authorization': this.token
+                })
+            };
+            this.http.post('http://diplodoc.ru/api/post', {
+                type_of_work: value.type_of_work,
+                amount: value.amount,
+                work_hours: value.work_hours,
+                workman: value.workman,
+                materials: value.materials,
+                documents: value.documents,
+                task_id: task_id
+            }, httpOptions).subscribe(
+                (response) => {
+                    if (response == null) {
+                        throw new Error('Empty response');
+                    } else {
+                        return response;
+                    }
+                },
+                (error: HttpErrorResponse) => {
+                    if (error['status'] === 401) {
+                        console.log(error);
+
+                    }
+                }
+            );
+        } catch (e) {
+            console.log(e);
+
+        }
+
+    }
 }

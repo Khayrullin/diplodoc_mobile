@@ -8,8 +8,13 @@
 </ion-header>
 
 <ion-content>
+  <ion-button expand="block" (click)="createReport()">
+    Добавить отчет
+  </ion-button>
   <ion-item-group *ngFor="let item of items">
     <ion-item button (click)="openDetailedReport(item.id)" > {{ item.type_of_work }}</ion-item>
   </ion-item-group>
+
+
 
 </ion-content>

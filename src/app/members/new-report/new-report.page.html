@@ -1,0 +1,79 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-back-button text="Назад"></ion-back-button>
+        </ion-buttons>
+        <ion-title>Новый отчет</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <form [formGroup]="reportForm" novalidate (ngSubmit)="save(1)">
+
+
+        <ion-item>
+            <ion-label mode="ios" position="stacked">Тип работы</ion-label>
+            <ion-input type="text" placeholder="Введите тип работы" required="true" id="type_of_work" formControlName="type_of_work"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.type_of_work">
+                <div class="error-message"
+                     *ngIf="reportForm.get('type_of_work').hasError(validation.type) && (reportForm.get('type_of_work').dirty ||reportForm.get('type_of_work').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-item>
+            <ion-label mode="ios" position="stacked">Объем работы</ion-label>
+            <ion-input type="text"  placeholder="Введите объем работы" required="true" mode="ios" id="amount"
+                       formControlName="amount"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.amount">
+                <div class="error-message"
+                     *ngIf="reportForm.get('amount').hasError(validation.type) && (reportForm.get('amount').dirty || reportForm.get('amount').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-item>
+            <ion-label mode="ios" position="stacked">Рабочий</ion-label>
+            <ion-input type="text"  placeholder="Выберите рабочего" required="true" mode="ios" id="workman"
+                       formControlName="workman"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-label mode="ios" position="stacked">Время работы(часы)</ion-label>
+            <ion-input type="text"  placeholder="Введите время работы" required="true" mode="ios" id="work_hours"
+                       formControlName="work_hours"></ion-input>
+        </ion-item>
+        <div class="validation-errors">
+            <ng-container *ngFor="let validation of validation_messages.work_hours">
+                <div class="error-message"
+                     *ngIf="reportForm.get('work_hours').hasError(validation.type) && (reportForm.get('work_hours').dirty || reportForm.get('work_hours').touched)">
+                    {{ validation.message }}
+                </div>
+            </ng-container>
+        </div>
+
+        <ion-item>
+            <ion-label mode="ios" position="stacked">Потраченные материалы</ion-label>
+            <ion-input type="text" placeholder="Введите материалы" required="true" mode="ios" id="materials"
+                       formControlName="materials"></ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label mode="ios" position="stacked">Прикрепить</ion-label>
+            <ion-input type="text" required="true" mode="ios" id="documents"
+                       formControlName="documents"></ion-input>
+        </ion-item>
+
+        <ion-col>
+            <ion-button type="submit" color="success" [disabled]="reportForm.invalid" expand="block">
+                <ion-ripple-effect></ion-ripple-effect>
+                Отправить отчет
+            </ion-button>
+        </ion-col>
+    </form>
+</ion-content>

@@ -6,6 +6,7 @@ const routes: Routes = [
   { path: 'task', loadChildren: './task/task.module#TaskPageModule' },
   { path: 'report', loadChildren: './report/report.module#ReportPageModule' },
   { path: 'reports', loadChildren: './reports/reports.module#ReportsPageModule' },
+  { path: 'new-report', loadChildren: './new-report/new-report.module#NewReportPageModule' },
 ];
 
 @NgModule({
