@@ -66,7 +66,7 @@ export class UpdaterService {
                 type_of_work: value.type_of_work,
                 amount: value.amount,
                 work_hours: value.work_hours,
-                workman: value.workman,
+                workman_id: value.workman,
                 materials: value.materials,
                 documents: value.documents,
                 task_id: task_id
@@ -75,6 +75,7 @@ export class UpdaterService {
                     if (response == null) {
                         throw new Error('Empty response');
                     } else {
+                        console.log(response);
                         return response;
                     }
                 },

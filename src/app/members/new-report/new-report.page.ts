@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AuthenticationService} from '../../services/authentication.service';
 import {UpdaterService} from '../../services/updater.service';
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-new-report',
@@ -16,8 +17,14 @@ export class NewReportPage implements OnInit {
   materials = AbstractControl;
   documents = AbstractControl;
   reportForm: FormGroup;
+  task_id: any;
 
-  constructor(private updService: UpdaterService) {
+  constructor(private updService: UpdaterService, private route: ActivatedRoute, private router: Router) {
+    this.route.queryParams.subscribe(params => {
+      if (this.router.getCurrentNavigation().extras.state) {
+        this.task_id = this.router.getCurrentNavigation().extras.state.task_id;
+      }
+    });
     this.reportForm = new FormGroup({
       type_of_work: new FormControl('', [Validators.required]),
       amount: new FormControl('', [Validators.required]),
@@ -44,8 +51,8 @@ export class NewReportPage implements OnInit {
   }
 
 
-  save(task_id) {
-    console.log(this.updService.saveReport(this.reportForm.value, task_id));
+  save() {
+    console.log(this.updService.saveReport(this.reportForm.value, this.task_id));
   }
 
 }

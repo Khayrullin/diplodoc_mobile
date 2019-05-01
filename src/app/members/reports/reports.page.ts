@@ -41,6 +41,11 @@ export class ReportsPage implements OnInit {
     }
 
     createReport() {
-        return this.router.navigate(['members', 'new-report']);
+        const navigationExtras: NavigationExtras = {
+            state: {
+                task_id: this.items[0]['task_id']
+            }
+        };
+        return this.router.navigate(['members', 'new-report'], navigationExtras);
     }
 }
