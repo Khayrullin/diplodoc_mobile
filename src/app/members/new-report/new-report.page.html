@@ -63,25 +63,29 @@
             </ng-container>
         </div>
 
-        <ion-label mode="ios" position="stacked">Потраченные материалы</ion-label>
-        <ion-grid>
-            <ion-item-group *ngFor="let m of  materials; let i=index ">
-                <div class="block">
-                    {{m.name}}
-                    <ion-row>
-                        <ion-col size="8">
-                            <ion-label><p>Количество</p></ion-label>
-                            <ion-input type="text" formControlName="material" placeholder="Введите материалы" required="true" mode="ios" id="material"></ion-input>
-                        </ion-col>
-                        <ion-col>
-                            <ion-label><p>Ед. изм</p></ion-label>
-                            {{m.unit}}
-                        </ion-col>
-                    </ion-row>
-                </div>
-            </ion-item-group>
-        </ion-grid>
+        <div formArrayName="materials">
+            <ion-label mode="ios" position="stacked">Потраченные материалы</ion-label>
+            <ion-grid>
+                <ion-item-group *ngFor="let address of materials.controls; let i=index">
+                    <div class="block">
+                        {{materials_ar[i].name}}
+                        <ion-row>
+                            <ion-col size="8">
+                                <ion-label><p>Количество</p></ion-label>
+                                <ion-input type="text" formControlName="{{i}}"
+                                           placeholder="Введите материалы"></ion-input>
+                            </ion-col>
+                            <ion-col>
+                                <ion-label><p>Ед. изм</p></ion-label>
+                                {{materials_ar[i].unit}}
+                            </ion-col>
+                        </ion-row>
+                    </div>
+                </ion-item-group>
 
+            </ion-grid>
+
+        </div>
 
         <ion-item>
             <ion-label mode="ios" position="stacked">Прикрепить</ion-label>

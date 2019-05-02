@@ -55,7 +55,8 @@ export class UpdaterService {
 
     }
 
-    saveReport(value, task_id) {
+    saveReport(value, task_id, materials) {
+        console.log(value);
         try {
             const httpOptions = {
                 headers: new HttpHeaders({
@@ -70,7 +71,7 @@ export class UpdaterService {
                 workman_id: value.workman,
 
                 // TODO
-                materials: value.material,
+                materials: materials,
                 documents: value.documents,
             }, httpOptions).subscribe(
                 (response) => {
