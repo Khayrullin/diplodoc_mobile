@@ -56,7 +56,6 @@ export class UpdaterService {
     }
 
     saveReport(value, task_id, materials) {
-        console.log(value);
         try {
             const httpOptions = {
                 headers: new HttpHeaders({

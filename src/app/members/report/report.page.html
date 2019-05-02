@@ -16,6 +16,9 @@
         <ion-label><p>Тип работы</p></ion-label>
         <ion-item> {{ items.type_of_work }}</ion-item>
 
+        <ion-label><p>Статус</p></ion-label>
+        <ion-item> {{ items.status.name }}</ion-item>
+
         <ion-label><p>Рабочий</p></ion-label>
         <ion-item> {{ items.workman_id.name }} {{ items.workman_id.last_name }}</ion-item>
 
@@ -33,13 +36,12 @@
 
         <ion-grid>
 
-            <ion-item-group *ngFor="let item of  items.wmaterials ">
+            <ion-item-group *ngFor="let item of  items.wmaterials; let i=index ">
                 <div class="block">
-                    {{item.name}}
                     <ion-row>
                         <ion-col size="5">
                             <ion-label><p>Наименование</p></ion-label>
-                            {{item.material_id}}
+                            {{materials_ar[i].name}}
                         </ion-col>
                         <ion-col size="5">
                             <ion-label><p>Потрачено</p></ion-label>

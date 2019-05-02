@@ -36,7 +36,8 @@ export class ReportsPage implements OnInit {
         console.log(this.data);
         const navigationExtras: NavigationExtras = {
             state: {
-                task: this.data
+                task: this.data,
+                materials: this.materials
             }
         };
         return this.router.navigate(['members', 'report'], navigationExtras);

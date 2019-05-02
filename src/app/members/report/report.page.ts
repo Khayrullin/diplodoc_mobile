@@ -11,12 +11,14 @@ import {UpdaterService} from '../../services/updater.service';
 export class ReportPage implements OnInit {
     items: any;
     data: any;
+    private materials_ar: any;
 
     constructor(private storage: Storage,
                 private route: ActivatedRoute, private router: Router) {
         this.route.queryParams.subscribe(params => {
             if (this.router.getCurrentNavigation().extras.state) {
                 this.items = this.router.getCurrentNavigation().extras.state.task;
+                this.materials_ar = this.router.getCurrentNavigation().extras.state.materials;
             }
         });
     }
