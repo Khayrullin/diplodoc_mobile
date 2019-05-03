@@ -73,6 +73,7 @@ export class NewReportPage implements OnInit {
             this.materials_ar[m]['wasted'] = this.reportForm.value.materials[m];
         }
         console.log(this.updService.saveReport(this.reportForm.value, this.task_id, this.materials_ar));
+        this.router.navigate(['members', 'dashboard']);
     }
 
 }

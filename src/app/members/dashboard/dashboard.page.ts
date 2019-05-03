@@ -2,7 +2,7 @@ import {Component, OnInit, Pipe, PipeTransform} from '@angular/core';
 import {AuthenticationService} from '../../services/authentication.service';
 import {Storage} from '@ionic/storage';
 import {UpdaterService} from '../../services/updater.service';
-import {NavigationExtras, Router} from '@angular/router';
+import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
 
 
 @Component({
@@ -19,9 +19,11 @@ export class DashboardPage implements OnInit {
 
 
     constructor(private authService: AuthenticationService, private router: Router, private storage: Storage,
-                private updService: UpdaterService) {
+                private updService: UpdaterService, private route: ActivatedRoute) {
+        this.route.queryParams.subscribe(params => {
+            this.doRefresh();
+        });
         this.loadItems();
-        this.doRefresh();
     }
 
     ngOnInit() {
@@ -57,10 +59,11 @@ export class DashboardPage implements OnInit {
     }
 
     update() {
-        return this.updService.update();
+        this.updService.update();
     }
 
      doRefresh() {
+        this.update();
         this.loading = 0;
         const progressBar = setInterval(() => {
             this.loading += .25;
@@ -70,7 +73,6 @@ export class DashboardPage implements OnInit {
         }, 500);
         setTimeout(() => {
             this.loadItems();
-        }, 2000);
-        return this.update();
+        }, 3000);
     }
 }
