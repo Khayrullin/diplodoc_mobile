@@ -10,8 +10,6 @@ import {IonicStorageModule} from '@ionic/storage';
 import {HttpClientModule} from '@angular/common/http';
 
 import { Camera } from '@ionic-native/Camera/ngx';
-import { File } from '@ionic-native/File/ngx';
-import { FilePath } from '@ionic-native/file-path/ngx';
 
 
 
@@ -27,8 +25,6 @@ import { FilePath } from '@ionic-native/file-path/ngx';
         SplashScreen,
         {provide: RouteReuseStrategy, useClass: IonicRouteStrategy},
         Camera,
-        File,
-        FilePath
     ],
     bootstrap: [AppComponent]
 })

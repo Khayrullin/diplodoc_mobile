@@ -57,7 +57,7 @@ export class UpdaterService {
 
     }
 
-    saveReport(value, task_id, materials) {
+    saveReport(value, task_id, materials, documents) {
         try {
             const httpOptions = {
                 headers: new HttpHeaders({
@@ -75,7 +75,7 @@ export class UpdaterService {
                         task_id: task_id,
                         workman_id: value.workman,
                         materials: materials,
-                        documents: value.documents
+                        documents: documents
                     });
                 } else {
                     this.local_reports = [{
@@ -85,7 +85,7 @@ export class UpdaterService {
                         task_id: task_id,
                         workman_id: value.workman,
                         materials: materials,
-                        documents: value.documents
+                        documents: documents
                     }];
                 }
                 this.storage.set('local_reports', this.local_reports);

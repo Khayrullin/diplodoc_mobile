@@ -87,12 +87,11 @@
 
         </div>
 
-        <ion-item>
-            <ion-label mode="ios" position="stacked">Прикрепить</ion-label>
-            <ion-input type="text" required="true" mode="ios" id="documents"
-                       formControlName="documents"></ion-input>
-        </ion-item>
 
+        <ion-button size="full" (click)="openGalery()">Выбрать файл7</ion-button>
+        <div class="pinned" *ngFor="let doc of base64Image, let i=index">
+        <div class="pin"> {{doc.name}}{{i+1}}</div>
+        </div>
         <ion-col>
             <ion-button type="submit" color="success" [disabled]="reportForm.invalid" expand="block">
                 <ion-ripple-effect></ion-ripple-effect>
