@@ -65,7 +65,6 @@ export class UpdaterService {
                 })
             };
             this.storage.get('local_reports').then(valueStr => {
-                console.log('any');
                 if (valueStr) {
                     this.local_reports = valueStr;
                     this.local_reports.push({
@@ -113,7 +112,6 @@ export class UpdaterService {
         } catch
             (e) {
             console.log(e);
-            this.storage.remove('local_reports');
         }
     }
 

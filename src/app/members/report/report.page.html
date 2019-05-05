@@ -32,10 +32,8 @@
         <ion-item>{{ items.work_hours}}</ion-item>
 
 
-        <ion-label><p>Использованные материалы</p></ion-label>
-
+        <ion-label *ngIf="items.wmaterials != 0"><p>Использованные материалы</p></ion-label>
         <ion-grid>
-
             <ion-item-group *ngFor="let item of  items.wmaterials; let i=index ">
                 <div class="block">
                     <ion-row>
@@ -51,6 +49,15 @@
                 </div>
             </ion-item-group>
         </ion-grid>
+
+
+        <ion-label *ngIf="items.documents != 0"><p>Прикрепленные документы</p></ion-label>
+        <ion-item-group *ngFor="let doc of  items.documents; let i=index ">
+            <div class="block">
+                        <ion-label><p></p></ion-label>
+                        <ion-img  src="{{doc.data}}" ></ion-img>
+            </div>
+        </ion-item-group>
 
     </ion-list>
 </ion-content>
