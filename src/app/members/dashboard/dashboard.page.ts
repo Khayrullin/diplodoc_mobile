@@ -3,6 +3,7 @@ import {AuthenticationService} from '../../services/authentication.service';
 import {Storage} from '@ionic/storage';
 import {UpdaterService} from '../../services/updater.service';
 import {ActivatedRoute, NavigationExtras, Router} from '@angular/router';
+import * as moment from 'moment';
 
 
 @Component({
@@ -16,6 +17,7 @@ export class DashboardPage implements OnInit {
     upd_at: any;
     ok = true;
     loading = 0;
+    upd_ago: any;
 
 
     constructor(private authService: AuthenticationService, private router: Router, private storage: Storage,
@@ -24,6 +26,12 @@ export class DashboardPage implements OnInit {
             this.doRefresh();
         });
         this.loadItems();
+        setInterval(() => {
+            this.storage.get('upd_at').then(data => {
+                moment.locale('ru');
+                this.upd_at = moment(data).fromNow();
+            });
+        }, 60000);
     }
 
     ngOnInit() {
@@ -35,7 +43,8 @@ export class DashboardPage implements OnInit {
             this.items = items;
         });
         this.storage.get('upd_at').then(data => {
-            this.upd_at = data;
+            moment.locale('ru');
+            this.upd_at = moment(data).fromNow();
         });
     }
 
