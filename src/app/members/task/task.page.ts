@@ -33,6 +33,7 @@ export class TaskPage implements OnInit {
         const navigationExtras: NavigationExtras = {
             state: {
                 task: this.data,
+                task_id: this.items['id'],
                 materials: this.items['materials']
             }
         };
